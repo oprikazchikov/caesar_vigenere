@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Криптоанализ</title>
+    <link rel="stylesheet" href="/css/indexKrip.css">
+</head>
+<body>
+    <form action="/cgi-bin/cryptanalysis.py">
+        <table border="1" class="data">
+            <tr>
+                <th>Данные для обработки:</th>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="data" tabindex="1" rows="20" cols="70" name="text" required></textarea>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <caption>Параметры:</caption>
+            <tr>
+                <td>
+                    <input type="file" name="importWord">
+                </td>
+                <td>
+                    <input type="submit" name="loadFile" value="Загрузить"/>
+                </td>
+            </tr>
+            <tr><td><strong>Метод:</strong></td></tr>
+            <tr>
+                <td>
+                    <p><input type="radio" name="chkMethod" value="caesar" id="chkMethodCaesar" checked />
+                    <label for="chkMethodCaesar">Цезаря</label></p>
+                    <p><input type="radio" name="chkMethod" value="vigenere" id="chkMethodVigenere" />
+                    <label for="chkMethodVigenere">Виженера</label></p>
+                </td>
+            </tr>
+            <tr><td><strong>Действие:</strong></td></tr>
+            <tr>
+                <td>
+                    <lable for="encodeKey">Ключ шифрования:</lable>
+                    <input type="text" name="encodeKey" id="encodeKey" value="0"/></p>
+                    <p><input type="radio" name="act" value="encode" id="chkActEncode" checked />
+                    <label for="chkActEncode">Шифровать</label>
+                    <p><input type="radio" name="act" value="decode" id="chkActDecode" />
+                    <label for="chkActDecode">Расшифровать</label></p>
+                    <p><input type="radio" name="act" value="breaking" id="chkActBreaking" />
+                    <label for="chkActBreaking">Взломать</label></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="ok" value="OK"/>
+                    <input type="reset" name="reset" value="Очистить" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Линейная регрессия</title>
+    <link rel="stylesheet" href="/css/indexRegress.css">
+</head>
+<body>
+    <form action="/cgi-bin/formRegress.py">
+        <table border="1" class="data">
+            <caption>Расчетные данные</caption>
+            <!-- Заголовок -->
+            <tr>
+                <th>Y-переменная</th>
+                <th colspan="4">X-переменные</th>
+            </tr>
+            <!--заголовок области данных-->
+            <tr>
+                <th>Y</th><th>A</th><th>B</th><th>C</th><th>D</th>
+            </tr>
+            <!-- область ввода данных-->
+            <tr>
+                <!-- Y -->
+                <th>
+                    <textarea name="selY" tabindex="1" rows="30" cols="1" required></textarea>
+                </th>
+                <!-- A -->
+                <th>
+                    <textarea name="selA" tabindex="2" rows="30" cols="1" required></textarea>
+                </th>
+                <!-- B -->
+                <th>
+                    <textarea name="selB" tabindex="3" rows="30" cols="1"></textarea>
+                </th>
+                <!-- C -->
+                <th>
+                    <textarea name="selC" tabindex="4" rows="30" cols="1"></textarea>
+                </th>
+                <!-- D -->
+                <th>
+                    <textarea name="selD" tabindex="5" rows="30" cols="1"></textarea>
+                </th>
+            </tr>
+        </table>
+        <!--рабочая область-->
+        <table class="act">
+            <caption>Параметры:</caption>
+            <tr>
+                <td>
+                    <input type="file" name="importExcel" />
+                </td>
+                <td>
+                    <input type="submit" name="loadFile" value="Загрузить"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="checkbox" name="checkHeader" id="checkHeader"/>
+                <label for="checkHeader">Использовать заголовок?</label></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>Регрессия:</strong>
+                    <p><input type="radio" name="chkRegression" value="linear" id="chkRegressionlinear" checked />
+                    <label for="chkRegressionlinear">Линейная</label></p>
+                    <p><input type="radio" name="chkRegression" value="multiple" id="chkRegressionmultiple"/>
+                    <label for="chkRegressionmultiple">Множественная</label></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="calc" value="Расчитать"/>
+                    <input type="reset" name="reset" value="Очистить" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="environment" value="Переменные окружения" form="environment">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <form action="/cgi-bin/environment.py" id="environment">
+
+    </form>
+
+</body>
+</html>
