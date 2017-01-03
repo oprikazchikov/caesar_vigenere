@@ -9,3 +9,4 @@ class Vigenere:
         """Инициализация"""
         self.data = data
         self.key = key
+
