@@ -2,6 +2,7 @@
 
 from tkinter import *
 import caesar
+import vigenere
 
 
 # ------------------------ Обработка -------------------------------
@@ -13,8 +14,15 @@ def event_run(event):
     res_text_in = text_in.get(1.0, END)
     text_out.delete(1.0, END)
     c = caesar.Caesar(res_text_in, res_key)  # создаем объект Caesar для обработки методом Цезаря
-    t_data = c.transform()  # трансформируем текст
-    verifi = c.verifi(res_key)  # проводим верификацию входящих данных
+    c.transform()  # выполняем трансформацию по Цезарю (особенность реализации(костыль))
+    v = vigenere.Vigenere()  # создаем объект Vigenere для обработки методом Виженера
+    t_data = v.transform(res_text_in)  # трансформируем текст для Виженера (отдельная процедура трансформаии,
+    # т.к. разбивать по 4 символа нужно после обработки (особенность реализации))
+    # проводим верификацию входящих данных
+    if res_method == 0:  # если метод Цезаря
+        verifi = c.verifi(res_key)  # верификация по Цезарю (ключ только цифры и т.д.)
+    else:  # евли метод Виженера
+        verifi = v.verifi(t_data, res_key)
     if verifi == "данные валидны":
         if res_method == 0:  # Если шифр Цезаря
             if res_act == 0:  # Если Шифрование
@@ -30,9 +38,14 @@ def event_run(event):
             else:
                 res = "метод в разработке"
         else:
-            res = "метод в разработке"
+            if res_act == 0:  # Если Шифрование
+                res = v.vigenere(t_data, res_key, v.enc)
+            elif res_act == 1:  # Если Расшифрование
+                res = v.vigenere(t_data, res_key, v.dec)
+            else:
+                res = "метод в разработке"
     else:
-        res = "данные не прошли верификацию, необходимо внести исправления"
+        res = "данные не прошли верификацию, необходимо внести исправления " + verifi
     # Выводим результат
     text_out.insert(END, res)
 
